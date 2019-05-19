@@ -37,7 +37,7 @@ class Phone(models.Model):
 
     telephone_residential = models.CharField(max_length=50, blank=True)
     telephone_mobile = models.CharField(max_length=50, blank=True)
-    user = models.ForeignKey(Student, related_name="number_student", on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, related_name="phone_student", on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = _('phone')
