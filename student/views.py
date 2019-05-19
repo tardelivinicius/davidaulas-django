@@ -21,19 +21,10 @@ class StudentViewSet(viewsets.ModelViewSet):
             )
         )
         return queryset
-    
-    def create(self, request):
 
-        address = request.data.pop("address_student", [])
-        phones = request.data.pop("phone_student", [])
+    def destroy(self, request, pk=None):
+        student = get_object_or_404(Student.objects.filter(pk=pk))
+        student.status = 3
+        student.save()
 
-        student = Student.objects.create(**request.data)
-
-        Address.objects.create(address, student=student)
-        Phone.objects.create(phones, student=student)
-        print(student)
-        print(request.data)
-        print(address)
-        print(phones)
-
-        return student
+        return Response({"detail:" "success"}, status=status.HTTP_200_OK)
