@@ -60,16 +60,25 @@ class StudentSerializer(serializers.ModelSerializer):
         instance.name_responsible = validated_data.get('name_responsible', instance.name_responsible)
         instance.save()
         
-        instance_address = Address.objects.filter(student=instance)
-        if instance_address is not None:
+        instance_address = Address.objects.filter(student=instance).count()
+        instance_phones = Phone.objects.filter(student=instance).count()
+               
+        if instance_address == 0:
+            for address in adresses:
+                Address.objects.create(student=instance, **address)
+        else:
+            instance_address = Address.objects.get(student=instance)
             for address in adresses:
                 instance_address.address = address['address']
                 instance_address.number = address['number']
                 instance_address.save()
-
         
-        instance_phones = Phone.objects.filter(student=instance)
-        if instance_phones is not None:
+        
+        if instance_phones == 0:
+            for phone in phones:
+                Phone.objects.create(student=instance, **phone)
+        else:
+            instance_phones = Phone.objects.get(student=instance)
             for phone in phones:
                 instance_phones.telephone_residential = phone['telephone_residential']
                 instance_phones.telephone_mobile = phone['telephone_mobile']
