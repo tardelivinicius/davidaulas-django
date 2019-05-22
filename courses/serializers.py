@@ -13,7 +13,6 @@ class CourseDateSerializer(serializers.ModelSerializer):
 
             
 class CourseSerializer(serializers.ModelSerializer):
-    date_course = CourseDateSerializer(many=True)
 
     class Meta:
         model = Course
@@ -29,8 +28,7 @@ class CourseSerializer(serializers.ModelSerializer):
         dates = validated_data.pop('date_course')
         course = Course.objects.create(**validated_data)
 
-        for date in dates:
-            CourseDate.objects.create(course=course, **date)
+        course.date_course.set(dates)
 
         return course
 
