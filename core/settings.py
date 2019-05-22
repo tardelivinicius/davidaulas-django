@@ -64,7 +64,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # LOCALHOST HEROKU
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'dc6d7bo5e2veat',
         'USER': 'jsmgaudconvnjc',
         'PASSWORD': '030595',
