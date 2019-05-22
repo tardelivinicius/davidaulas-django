@@ -62,28 +62,28 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 # LOCALHOST HEROKU
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dc6d7bo5e2veat',
-        'USER': 'jsmgaudconvnjc',
-        'PASSWORD': '030595',
-        'HOST': '9b4f675b6bf2ce70c7e4f1e4b397b80a5f956c18e7f772774bb38631d184f634',
-        'PORT': '5432',
-    }
-}
-
-# # LOCALHOST DEV
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'davidaulas',
-#         'USER': 'root',
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'dc6d7bo5e2veat',
+#         'USER': 'jsmgaudconvnjc',
 #         'PASSWORD': '030595',
-#         'HOST': '127.0.0.1',
-#         'PORT': '3306',
+#         'HOST': '9b4f675b6bf2ce70c7e4f1e4b397b80a5f956c18e7f772774bb38631d184f634',
+#         'PORT': '5432',
 #     }
 # }
+
+# # LOCALHOST DEV
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'davidaulas',
+        'USER': 'root',
+        'PASSWORD': '030595',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators

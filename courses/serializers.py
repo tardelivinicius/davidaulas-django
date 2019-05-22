@@ -7,12 +7,14 @@ from courses.models import Course, CourseDate
 class CourseDateSerializer(serializers.ModelSerializer):
     class Meta:
         model = CourseDate
-        fields = ['day',
+        fields = ['id',
+                  'day',
                   'hour'
                  ]
 
             
 class CourseSerializer(serializers.ModelSerializer):
+    date_course = CourseDateSerializer(many=True)
 
     class Meta:
         model = Course
