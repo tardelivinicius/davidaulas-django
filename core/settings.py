@@ -19,9 +19,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
     'oauth2_provider',
-    'corsheaders',
+    'rest_framework',
     'student',
     'class',
     'courses',
@@ -67,10 +66,10 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dc6d7bo5e2veat',
-        'USER': 'jsmgaudconvnjc',
-        'PASSWORD': '030595',
-        'HOST': '9b4f675b6bf2ce70c7e4f1e4b397b80a5f956c18e7f772774bb38631d184f634',
+        'NAME': 'dcbkdp74n3ouft',
+        'USER': 'uyqzntyepwpcrn',
+        'PASSWORD': '627c0ae144946f6b63027b2da80cf59c20e987a4008e60d1703f7e912ac4836b',
+        'HOST': 'ec2-174-129-242-183.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
@@ -81,7 +80,7 @@ DATABASES = {
 #         'ENGINE': 'django.db.backends.mysql',
 #         'NAME': 'davidaulas',
 #         'USER': 'root',
-#         'PASSWORD': '030595',
+#         'PASSWORD': 'root',
 #         'HOST': '127.0.0.1',
 #         'PORT': '3306',
 #     }
