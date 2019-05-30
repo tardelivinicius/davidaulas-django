@@ -11,23 +11,23 @@ DEFAULT_STATUS = (
 )
 
 
-class Class(models.Model):
+class RoomClass(models.Model):
 
-    user = models.ForeignKey(Student, related_name="class_student", on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, related_name="class_student", on_delete=models.CASCADE)
     course = models.ForeignKey(Course, related_name="class_course", on_delete=models.CASCADE)
-    date = models.DateTimeField()
+    date = models.CharField(max_length=250, blank=False)
     status = models.IntegerField(_('Status'), choices=DEFAULT_STATUS, default=1)
 
     
     class Meta:
-        verbose_name = _('class')
-        verbose_name_plural = _('classrooms')
-        db_table = 'classrooms'
+        verbose_name = _('roomclass')
+        verbose_name_plural = _('roomclass')
+        db_table = 'roomclass'
 
 
 class Observation(models.Model):
 
-    classroom = models.ForeignKey(Class, related_name="observation_class", on_delete=models.CASCADE)
+    classroom = models.ForeignKey(RoomClass, related_name="observation_class", on_delete=models.CASCADE)
     observation = models.TextField(max_length=1000, blank=True)
 
     class Meta:

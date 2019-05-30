@@ -23,7 +23,7 @@ INSTALLED_APPS = [
     'oauth2_provider',
     'rest_framework',
     'student',
-    'class',
+    'roomclass',
     'courses',
     'finances',
     
@@ -65,28 +65,28 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 # LOCALHOST HEROKU
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd90pmfhcf23os9',
-        'USER': 'tmrmuavygaxiaf',
-        'PASSWORD': '8e10a17c57364fcec3ad0ea6fa1a5d351bdcba3562741bcacbe6cdaaa4d7d58a',
-        'HOST': 'ec2-75-101-128-10.compute-1.amazonaws.com',
-        'PORT': '5432',
-    }
-}
-
-# # LOCALHOST DEV
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'davidaulas',
-#         'USER': 'root',
-#         'PASSWORD': 'root',
-#         'HOST': '127.0.0.1',
-#         'PORT': '3306',
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'd90pmfhcf23os9',
+#         'USER': 'tmrmuavygaxiaf',
+#         'PASSWORD': '8e10a17c57364fcec3ad0ea6fa1a5d351bdcba3562741bcacbe6cdaaa4d7d58a',
+#         'HOST': 'ec2-75-101-128-10.compute-1.amazonaws.com',
+#         'PORT': '5432',
 #     }
 # }
+
+# # LOCALHOST DEV
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'davidaulas',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
