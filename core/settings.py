@@ -7,7 +7,7 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-ALLOWED_HOSTS = ['davidaulas.herokuapp.com', '127.0.0.1', '*']
+ALLOWED_HOSTS = ['davidaulas-django.herokuapp.com', '127.0.0.1', '*']
 
 
 # Application definition
