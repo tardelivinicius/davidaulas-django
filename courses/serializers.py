@@ -52,3 +52,8 @@ class CourseSerializer(serializers.ModelSerializer):
             instance_dates.save()
         
         return instance
+
+class CourseClassSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Course
+        fields = ['name',]

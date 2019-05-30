@@ -85,3 +85,9 @@ class StudentSerializer(serializers.ModelSerializer):
                 instance_phones.save()
 
         return instance
+
+
+class StudentClassSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Student
+        fields = ['name']
