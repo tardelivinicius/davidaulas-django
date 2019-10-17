@@ -6,15 +6,19 @@ from django.shortcuts import get_object_or_404
 class PhoneSerializer(serializers.ModelSerializer):
     class Meta:
         model = Phone
-        fields = ['telephone_residential',
-                  'telephone_mobile'   
+        fields = [
+                  'id',
+                  'telephone_residential',
+                  'telephone_mobile'
                  ]
 
 
 class AddressSerializer(serializers.ModelSerializer):
     class Meta:
         model = Address
-        fields = ['address',
+        fields = [
+                  'id',
+                  'address',
                   'number'
                  ]
 
@@ -25,66 +29,66 @@ class StudentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Student
-        fields = ['id',
+        fields = [
+                  'id',
                   'email',
                   'name',
                   'name_responsible',
-                  'dtInc',
+                  'date_joined',
                   'address_student',
                   'phone_student',
-                  'status' 
+                  'status'
                  ]
 
-       
+
     def create(self, validated_data):
-
-        adresses = validated_data.pop('address_student')
-        phones = validated_data.pop('phone_student')
-        student = Student.objects.create(**validated_data)
-
-        for address in adresses:
-            Address.objects.create(student=student, **address)
-
-        for phone in phones:
-            Phone.objects.create(student=student, **phone)
-
-        return student
+        adresses = validated_data.pop('address_student', None)
+        phones = validated_data.pop('phone_student', None)
+        instance = Student(**validated_data)
+        instance.save()
+        self._save_address(instance, adresses)
+        self._save_phones(instance, phones)
+        return instance
 
     def update(self, instance, validated_data):
-
-        adresses = validated_data.pop("address_student", [])
-        phones = validated_data.pop("phone_student")
-        
+        adresses = validated_data.pop("address_student", None)
+        phones = validated_data.pop("phone_student", None)
         instance.email = validated_data.get('email', instance.email)
         instance.name = validated_data.get('name', instance.name)
         instance.name_responsible = validated_data.get('name_responsible', instance.name_responsible)
         instance.save()
-        
-        instance_address = Address.objects.filter(student=instance).count()
-        instance_phones = Phone.objects.filter(student=instance).count()
-               
-        if instance_address == 0:
-            for address in adresses:
-                Address.objects.create(student=instance, **address)
-        else:
-            instance_address = Address.objects.get(student=instance)
-            for address in adresses:
-                instance_address.address = address['address']
-                instance_address.number = address['number']
-                instance_address.save()
-        
-        
-        if instance_phones == 0:
-            for phone in phones:
-                Phone.objects.create(student=instance, **phone)
-        else:
-            instance_phones = Phone.objects.get(student=instance)
-            for phone in phones:
-                instance_phones.telephone_residential = phone['telephone_residential']
-                instance_phones.telephone_mobile = phone['telephone_mobile']
-                instance_phones.save()
-
+        self._save_address(instance, adresses)
+        self._save_phones(instance, phones)
         return instance
+
+    def _save_address(self, instance, adresses):
+        if adresses not in [None, '']:
+            for address in adresses:
+                if 'id' in address:
+                    instance_address = Address(pk=address['id'])
+                    instance_address.address = badge_language['address']
+                    instance_address.number = badge_language['number']
+                    instance_address.save()
+                else:
+                    address = Address(address=address['address'],
+                                      number=address['number'],
+                                      student=instance)
+                    address.save()
+
+    def _save_phones(self, instance, phones):
+        if phones not in [None, '']:
+            for phone in phones:
+                if 'id' in phone:
+                    instance_phones = Phone(pk=phone['id'])
+                    instance_phones.telephone_residential = phone['telephone_residential']
+                    instance_phones.telephone_mobile = phone['telephone_mobile']
+                    instance_phones.save()
+                else:
+                    phone = Phone(student=instance,
+                            telephone_residential=phone['telephone_residential'],
+                            telephone_mobile=phone['telephone_mobile']
+                                 )
+                    phone.save()
 
 
 class StudentClassSerializer(serializers.ModelSerializer):

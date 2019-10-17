@@ -1,8 +1,7 @@
 import os
-from decouple import config
 
-SECRET_KEY = config('SECRET_KEY')
-DEBUG = config('DEBUG', default=False, cast=bool)
+SECRET_KEY = '!q^2=@xo)bymj0m!(&7)x=xj6k@-fx80+7r27vk)3vh^bdp14s'
+DEBUG=True
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -26,7 +25,7 @@ INSTALLED_APPS = [
     'roomclass',
     'courses',
     'finances',
-    
+
 ]
 
 MIDDLEWARE = [
@@ -61,28 +60,13 @@ TEMPLATES = [
 WSGI_APPLICATION = 'core.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-
-# LOCALHOST HEROKU
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'd90pmfhcf23os9',
-#         'USER': 'tmrmuavygaxiaf',
-#         'PASSWORD': '8e10a17c57364fcec3ad0ea6fa1a5d351bdcba3562741bcacbe6cdaaa4d7d58a',
-#         'HOST': 'ec2-75-101-128-10.compute-1.amazonaws.com',
-#         'PORT': '5432',
-#     }
-# }
-
 # # LOCALHOST DEV
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'davidaulas',
         'USER': 'root',
-        'PASSWORD': 'root',
+        'PASSWORD': '030595',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }

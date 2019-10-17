@@ -10,10 +10,9 @@ class StudentViewSet(viewsets.ModelViewSet):
     authentication_classes = [OAuth2Authentication]
     permission_classes = [TokenHasReadWriteScope]
     serializer_class = StudentSerializer
-    
+
     def get_queryset(self):
-        queryset = Student.objects.all()
-        queryset = queryset.prefetch_related(
+        queryset = Student.objects.prefetch_related(
             'phone_student',
             Prefetch(
                 'address_student',
@@ -21,6 +20,19 @@ class StudentViewSet(viewsets.ModelViewSet):
             )
         )
         return queryset
+
+    def create(self, request):
+        serializer = self.get_serializer(data=request.data, partial=True)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    def update(self, request, pk):
+        student = get_object_or_404(self.get_queryset().filter(pk=pk))
+        serializer = self.get_serializer(student, data=request.data, partial=True)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     def destroy(self, request, pk=None):
         student = get_object_or_404(Student.objects.filter(pk=pk))

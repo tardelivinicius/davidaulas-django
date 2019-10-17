@@ -14,7 +14,7 @@ class Student(models.Model):
     email = models.CharField(max_length=250, blank=False)
     name = models.CharField(max_length=250, blank=False)
     name_responsible = models.CharField(max_length=250, blank=True)
-    dtInc = models.DateTimeField(default=timezone.now)
+    date_joined = models.DateTimeField(default=timezone.now)
     status = models.IntegerField(_('Status'), choices=DEFAULT_STATUS, default=1)
 
     class Meta:
