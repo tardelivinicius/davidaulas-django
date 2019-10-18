@@ -10,7 +10,6 @@ DEFAULT_STATUS = (
 )
 
 class Student(models.Model):
-
     email = models.CharField(max_length=250, blank=False)
     name = models.CharField(max_length=250, blank=False)
     name_responsible = models.CharField(max_length=250, blank=True)
@@ -23,7 +22,6 @@ class Student(models.Model):
         db_table = 'students'
 
 class Address(models.Model):
-
     address = models.CharField(max_length=250, blank=True)
     number = models.CharField(max_length=250, blank=True)
     student = models.ForeignKey(Student, related_name="address_student", on_delete=models.CASCADE)
@@ -34,7 +32,6 @@ class Address(models.Model):
         db_table = 'adresses'
 
 class Phone(models.Model):
-
     telephone_residential = models.CharField(max_length=50, blank=True)
     telephone_mobile = models.CharField(max_length=50, blank=True)
     student = models.ForeignKey(Student, related_name="phone_student", on_delete=models.CASCADE)

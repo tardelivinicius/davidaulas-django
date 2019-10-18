@@ -16,11 +16,10 @@ class PhoneSerializer(serializers.ModelSerializer):
 class AddressSerializer(serializers.ModelSerializer):
     class Meta:
         model = Address
-        fields = [
-                  'id',
+        fields = ['id',
                   'address',
                   'number'
-                 ]
+                  ]
 
 
 class StudentSerializer(serializers.ModelSerializer):
@@ -52,6 +51,7 @@ class StudentSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
         adresses = validated_data.pop("address_student", None)
+        print(adresses)
         phones = validated_data.pop("phone_student", None)
         instance.email = validated_data.get('email', instance.email)
         instance.name = validated_data.get('name', instance.name)
@@ -66,8 +66,9 @@ class StudentSerializer(serializers.ModelSerializer):
             for address in adresses:
                 if 'id' in address:
                     instance_address = Address(pk=address['id'])
-                    instance_address.address = badge_language['address']
-                    instance_address.number = badge_language['number']
+                    instance_address.address = address['address']
+                    instance_address.number = address['number']
+                    instance_address.student = instance
                     instance_address.save()
                 else:
                     address = Address(address=address['address'],
@@ -82,6 +83,7 @@ class StudentSerializer(serializers.ModelSerializer):
                     instance_phones = Phone(pk=phone['id'])
                     instance_phones.telephone_residential = phone['telephone_residential']
                     instance_phones.telephone_mobile = phone['telephone_mobile']
+                    instance_phones.student = instance
                     instance_phones.save()
                 else:
                     phone = Phone(student=instance,
