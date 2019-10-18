@@ -15,10 +15,10 @@ class RoomClass(models.Model):
 
     student = models.ForeignKey(Student, related_name="class_student", on_delete=models.CASCADE)
     course = models.ForeignKey(Course, related_name="class_course", on_delete=models.CASCADE)
-    date = models.CharField(max_length=250, blank=False)
+    date_joined = models.CharField(max_length=250, blank=False)
     status = models.IntegerField(_('Status'), choices=DEFAULT_STATUS, default=1)
 
-    
+
     class Meta:
         verbose_name = _('roomclass')
         verbose_name_plural = _('roomclass')

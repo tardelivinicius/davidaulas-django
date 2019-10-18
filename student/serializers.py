@@ -51,7 +51,6 @@ class StudentSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
         adresses = validated_data.pop("address_student", None)
-        print(adresses)
         phones = validated_data.pop("phone_student", None)
         instance.email = validated_data.get('email', instance.email)
         instance.name = validated_data.get('name', instance.name)
