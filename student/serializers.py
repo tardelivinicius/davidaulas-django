@@ -90,9 +90,3 @@ class StudentSerializer(serializers.ModelSerializer):
                             telephone_mobile=phone['telephone_mobile']
                                  )
                     phone.save()
-
-
-class StudentClassSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Student
-        fields = ['name']

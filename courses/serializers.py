@@ -14,8 +14,3 @@ class CourseSerializer(serializers.ModelSerializer):
                   'value',
                   'status'
                  ]
-
-class CourseClassSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Course
-        fields = ['name',]
